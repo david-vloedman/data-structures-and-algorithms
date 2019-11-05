@@ -117,7 +117,12 @@ Write a function named totalCharacters that takes in an array and returns the nu
 ------------------------------------------------------------------------------------------------ */
 
 const totalCharacters = (arr) => {
-  // Solution code here...
+  let total = arr.length;
+  Object.values(arr).forEach(val => {
+    if(val.spouse) total++;
+    total += val.children.length;
+  });
+  return total;
 };
 
 /* ------------------------------------------------------------------------------------------------
