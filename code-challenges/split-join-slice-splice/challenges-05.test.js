@@ -126,9 +126,9 @@ For example:
 ------------------------------------------------------------------------------------------------ */
 
 const removeEvenValues = (arr) => {
-  arr.forEach((num) => {
-    if(num % 2 === 0) arr.splice(arr.indexOf(num), 1);
-  });
+  for(let i = arr.length; i > -1; i--){
+    if(arr[i] % 2 === 0) arr.splice(i, 1);
+  }
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -148,7 +148,7 @@ removeLastCharacters('Gregor', 9) returns ''
 
 const removeLastCharacters = (str, numberOfCharacters) => {
   const arr = [...str];
-  for(let i = 0; i < numberOfCharacters; i++) arr.pop();  
+  for(let i = 0; i < numberOfCharacters; i++) arr.pop();
   return arr.join('');
 };
 
