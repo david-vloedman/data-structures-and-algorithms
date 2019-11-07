@@ -30,9 +30,8 @@ Write a function named notInFirstArray that, given two arrays as input, uses fil
 For example, notInFirstArray([1,2,3], [1,2,3,4]) returns [4].
 ------------------------------------------------------------------------------------------------ */
 
-const notInFirstArray = (forbiddenValues, arr) => {
-  // Solution code here...
-};
+const notInFirstArray = (forbiddenValues, arr) =>
+  arr.filter(x => !forbiddenValues.includes(x));
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 4
@@ -73,9 +72,8 @@ const snorlaxData = {
   weight: 4600
 };
 
-const getBaseStatGreaterThan = (arr, minBaseStat) => {
-  // Solution code here...
-};
+const getBaseStatGreaterThan = (arr, minBaseStat) =>
+  arr.filter(x => x.baseStat > minBaseStat);
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 5
@@ -85,9 +83,8 @@ Write a function named getStatName that is an extension of your getBaseStatGreat
 For example, getStatName(snorlaxData.stats, 50) will return ['special-defense', 'special-attack'].
 ------------------------------------------------------------------------------------------------ */
 
-const getStatName = (arr, minBaseStat) => {
-  // Solution code here...
-};
+const getStatName = (arr, minBaseStat) =>
+  getBaseStatGreaterThan(arr, minBaseStat).map(x => x.stat.name);
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 6
@@ -138,9 +135,8 @@ const characters = [
   }
 ];
 
-const getCharactersWithoutChildren = arr => {
-  // Solution code here...
-};
+const getCharactersWithoutChildren = arr =>
+  arr.filter(x => x.children === undefined);
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 7 - Stretch Goal
@@ -150,9 +146,10 @@ Write a function named evenOddNumericValues that, given an array as input, uses 
 For example: evenOddNumericValues(['Gregor', 2, 4, 1]) returns ['even', 'even', 'odd'].
 ------------------------------------------------------------------------------------------------ */
 
-const evenOddNumericValues = arr => {
-  // Solution code here...
-};
+const evenOddNumericValues = arr =>
+  arr
+    .filter(x => typeof x === 'number')
+    .map(x => (x % 2 === 0 ? 'even' : 'odd'));
 
 /* ------------------------------------------------------------------------------------------------
 TESTS
