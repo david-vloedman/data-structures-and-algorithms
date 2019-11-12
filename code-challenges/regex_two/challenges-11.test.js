@@ -27,9 +27,7 @@ Note: if you ever need to validate an email using a regex in practice, the Inter
 ------------------------------------------------------------------------------------------------ */
 
 const validateEmail = email =>
-  /^([a-z]+[0-9]*\.*[a-z]*[0-9]*)[^\.](@)+([a-z]*.(net|org|com))$/gi.test(
-    email
-  );
+  /^([a-z]+[0-9]*\.*[a-z]*[0-9]*)[^\.](@)+([a-z]*.(net|org|com))$/gi.test(email);
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 3
@@ -52,9 +50,7 @@ Your function should include a single regular expression pattern that matches an
 Return either true or false.
 ------------------------------------------------------------------------------------------------ */
 
-const validatePhoneNumber = phoneNumber => {
-  // Solution code here...
-};
+const validatePhoneNumber = (phoneNumber) => /^(\d{3}|\(\d{3}\))-? ?\d{3}-? ?\d{4}$/.test(phoneNumber);
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 4 - Stretch Goal
@@ -66,7 +62,8 @@ findTagNames(['<div><h1>Hello, world!</h1></div>', '<p>Welcome to my site</p>'])
 ------------------------------------------------------------------------------------------------ */
 
 const findTagNames = elements => {
-  // Solution code here...
+  return elements.map(str => str.match(/<(\/[a-z]+\d?)>/g))
+    .reduce( (ans,result) => ans.concat(result.map(x => x.slice(1, (x.length-1)))), [])
 };
 
 /* ------------------------------------------------------------------------------------------------
