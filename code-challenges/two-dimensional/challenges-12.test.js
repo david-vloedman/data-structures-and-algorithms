@@ -23,8 +23,16 @@ const alkiBeach = [33, 31, 147, 130, 27, 93, 38, 126, 141, 63, 46, 17];
 const cookieStores = [firstPike, seaTac, seattleCenter, capHill, alkiBeach];
 
 const grandTotal = (stores) => {
-  // Solution code here...
-
+  let total = 0;
+  let totalArray = []
+  for (let i = 0; i < hoursOpen.length; i++) {
+    for(let j = 0; j < stores.length; j++) {
+      total += stores[j][i]
+    }
+    totalArray.push(total)
+    total = 0;
+  }
+  return totalArray;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -38,8 +46,9 @@ Write a function named salesData that uses forEach to iterate over the hourlySal
 ------------------------------------------------------------------------------------------------ */
 
 const salesData = (hours, data) => {
-  // Solution code here...
+ 
 };
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 3
@@ -59,8 +68,8 @@ const errands = [
   }
 ];
 
-const howManyTreats = (arr) => {
-  // Solution code here...
+const howManyTreats = arr => {
+
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -81,9 +90,7 @@ Here is a sample board:
 The top row of the board is considered row zero and row numbers increase as they go down.
 ------------------------------------------------------------------------------------------------ */
 
-const battleship = (board, row, col) => {
-  //  Solution code here...
-};
+const battleship = (board, row, col) => board[row][col] === '#' ? 'hit' : 'miss';
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 5
@@ -93,9 +100,9 @@ Write a function named calculateProduct that takes in a two-dimensional array of
 For example, the following input returns a product of 720: [[1,2], [3,4], [5,6]]
 ------------------------------------------------------------------------------------------------ */
 
-const calculateProduct = (numbers) => {
-  // Solution code here...
-};
+const calculateProduct = numbers => {
+
+}
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 6
@@ -113,9 +120,9 @@ const weeklyTemperatures = [
   [65, 56, 55, 52, 55, 62, 57],
 ];
 
-const averageDailyTemperature = (weather) => {
-  // Solution code here...
-};
+const averageDailyTemperature = weather => {
+
+}
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 7
@@ -134,8 +141,8 @@ let lowestWeeklyTemperatureData = [
   [65, 56, 55, 52, 55, 62, 57],
 ];
 
-const lowestWeeklyAverage = (weather) => {
-  // Solution code here...
+const lowestWeeklyAverage = weather => {
+
 };
 
 /* ------------------------------------------------------------------------------------------------
