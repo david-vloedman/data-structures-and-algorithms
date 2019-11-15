@@ -208,7 +208,9 @@ const snorlaxData = {
 };
 
 const extractStat = (statName, arr) => {
-  // Solution code here...
+  return arr.reduce((a, b) => {
+    if(statName.localeCompare(b.name)) return a;
+  });
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -222,8 +224,8 @@ Write a function named extractChildren that, given the array of characters from 
 ------------------------------------------------------------------------------------------------ */
 
 const extractChildren = arr => {
-  // Solution code here...
-};
+  return arr.filter(i => i.name.includes('a')).reduce((a, b) => b.children.forEach(child => a.push(child)), []);
+  }
 
 /* ------------------------------------------------------------------------------------------------
 TESTS
