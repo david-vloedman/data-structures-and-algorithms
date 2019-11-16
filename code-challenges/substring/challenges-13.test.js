@@ -110,9 +110,13 @@ Return a two-dimensional array with the same roster, but where anyone whose name
 For example, [['Brook Testing', 'Actual Person'], ['Human Person', 'Brook again', 'still Brook']] returns [['Actual Person'], ['Human Person']]
 ------------------------------------------------------------------------------------------------ */
 
-const unenrollBrook = (arr) => {
-  // Solution code here...
-};
+const unenrollBrook = arr => arr
+  .map(course => {
+    return course.reduce((a, b) => {
+      !b.includes('Brook') ? a.push(b) : false;
+      return a
+    }, []);
+  });
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 9 - Stretch Goal
