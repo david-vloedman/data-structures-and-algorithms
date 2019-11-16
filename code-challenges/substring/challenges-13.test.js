@@ -8,7 +8,7 @@ Write a function named firstLetters that takes in an array of strings and return
 For example, ['this is great :)', 'wow', 'whyyyyyy :(', ':)))))'] returns ['t', 'w', 'w', ':']
 ------------------------------------------------------------------------------------------------ */
 
-const firstLetters = (arr) =>  arr.map(str => str.substring(0, 1));
+const firstLetters = (arr) => arr.map(str => str.substring(0, 1));
 
 
 /* ------------------------------------------------------------------------------------------------
@@ -19,7 +19,7 @@ Write a function named findHappiness that takes in an array of strings and retur
 For example, ['this is great :)', 'wow', 'whyyyyyy :(', ':)))))'] returns ['this is great :)', ':)))))']
 ------------------------------------------------------------------------------------------------ */
 
-const findHappiness = (arr) =>  {
+const findHappiness = (arr) => {
   let happy = [];
   arr.forEach(str => {
     if (str.includes(':)')) happy.push(str);
@@ -49,7 +49,11 @@ For example, 'abcdefg' returns 'bdf'
 ------------------------------------------------------------------------------------------------ */
 
 const onlyOddChars = (str) => {
-  // Solution code here...
+  let oddChars = '';
+  str.split('').forEach((char, index) => {
+    if (index % 2 !== 0) oddChars += (char);
+  });
+  return oddChars;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -152,7 +156,7 @@ describe('Testing challenge 1', () => {
   test('It should return the first letter of each element of the array', () => {
     const words = ['apple', 'banana', 'cantaloupe'];
 
-    expect(firstLetters(words)).toStrictEqual(['a','b','c']);
+    expect(firstLetters(words)).toStrictEqual(['a', 'b', 'c']);
     expect(firstLetters(['a', 'b', 'c', 'd'])).toStrictEqual(['a', 'b', 'c', 'd']);
     expect(firstLetters([])).toStrictEqual([]);
   });
@@ -229,7 +233,15 @@ describe('Testing challenge 8', () => {
       ['Jennifer'],
       ['Nicholas', 'Sam', 'Scott', 'Vinicio']
     ]);
-    expect(unenrollBrook([['Brook', 'person'], [], ['person', 'person', 'Brook']])).toStrictEqual([['person'], [], ['person', 'person']]);
+    expect(unenrollBrook([
+      ['Brook', 'person'],
+      [],
+      ['person', 'person', 'Brook']
+    ])).toStrictEqual([
+      ['person'],
+      [],
+      ['person', 'person']
+    ]);
     expect(unenrollBrook([])).toStrictEqual([]);
   });
 });
