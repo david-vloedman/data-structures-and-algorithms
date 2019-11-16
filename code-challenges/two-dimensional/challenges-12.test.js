@@ -206,7 +206,18 @@ For example, excel('1,1,1\n4,4,4\n9,9,9') returns [3, 12, 27].
 ------------------------------------------------------------------------------------------------ */
 
 const excel = (str) => {
-  // Solution code here...
+  const splitStr = str.split('');
+  let result = [0, 0, 0];
+  let index = 0;
+
+  splitStr.forEach(char => {
+    if (char === '\n') {
+      index++;
+    } else if (char !== ',') {
+      result[index] += Number(char);
+    }
+  })
+  return result;
 };
 
 /* ------------------------------------------------------------------------------------------------
