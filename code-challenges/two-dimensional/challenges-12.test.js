@@ -26,7 +26,7 @@ const grandTotal = (stores) => {
   let total = 0;
   let totalArray = []
   for (let i = 0; i < hoursOpen.length; i++) {
-    for(let j = 0; j < stores.length; j++) {
+    for (let j = 0; j < stores.length; j++) {
       total += stores[j][i]
     }
     totalArray.push(total)
@@ -47,7 +47,10 @@ Write a function named salesData that uses forEach to iterate over the hourlySal
 
 const salesData = (hours, data) => {
   const salesObj = [];
-  data.forEach((hour, index) => salesObj.push({ sales: `${hour} cookies`, time: hoursOpen[index] }));
+  data.forEach((hour, index) => salesObj.push({
+    sales: `${hour} cookies`,
+    time: hoursOpen[index]
+  }));
   return salesObj;
 };
 
@@ -58,15 +61,44 @@ CHALLENGE 3
 Write a function named howManyTreats that will return the quantity of treats you need to pick up from the pet store today from this array.
 ------------------------------------------------------------------------------------------------ */
 
-const errands = [
-  { store: 'Grocery store',
-    items: [ { name: 'Eggs', quantity: 12 }, { name: 'Milk', quantity: 1 }, { name: 'Apples', quantity: 3 }]
+const errands = [{
+    store: 'Grocery store',
+    items: [{
+      name: 'Eggs',
+      quantity: 12
+    }, {
+      name: 'Milk',
+      quantity: 1
+    }, {
+      name: 'Apples',
+      quantity: 3
+    }]
   },
-  { store: 'Drug store',
-    items: [ { name: 'Toothpaste', quantity: 1 }, { name: 'Toothbrush', quantity: 3 }, { name: 'Mouthwash',quantity: 1 } ]
+  {
+    store: 'Drug store',
+    items: [{
+      name: 'Toothpaste',
+      quantity: 1
+    }, {
+      name: 'Toothbrush',
+      quantity: 3
+    }, {
+      name: 'Mouthwash',
+      quantity: 1
+    }]
   },
-  { store: 'Pet store',
-    items: [ { name: 'Cans of food', quantity: 8 }, { name: 'Treats', quantity: 24 }, { name: 'Leash', quantity: 1 } ]
+  {
+    store: 'Pet store',
+    items: [{
+      name: 'Cans of food',
+      quantity: 8
+    }, {
+      name: 'Treats',
+      quantity: 24
+    }, {
+      name: 'Leash',
+      quantity: 1
+    }]
   }
 ];
 
@@ -109,7 +141,8 @@ For example, the following input returns a product of 720: [[1,2], [3,4], [5,6]]
 ------------------------------------------------------------------------------------------------ */
 
 const calculateProduct = numbers => {
-
+  return numbers.reduce((acc, curr) => acc.concat(curr))
+    .reduce((acc, curr) => acc * curr)
 }
 
 /* ------------------------------------------------------------------------------------------------
@@ -128,9 +161,9 @@ const weeklyTemperatures = [
   [65, 56, 55, 52, 55, 62, 57],
 ];
 
-const averageDailyTemperature = weather => {
-
-}
+const averageDailyTemperature = weather => weather
+  .reduce((acc, curr) => acc.concat(curr))
+  .reduce((acc, curr) => (acc + curr)) / 28;
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 7
@@ -189,19 +222,54 @@ describe('Testing challenge 1', () => {
 
 describe('Testing challenge 2', () => {
   test('It should create an object of data for each store', () => {
-    expect(salesData(hoursOpen, grandTotal(cookieStores))).toStrictEqual([
-      { sales: '88 cookies', time: '9 a.m.' },
-      { sales: '153 cookies', time: '10 a.m.' },
-      { sales: '252 cookies', time: '11 a.m.' },
-      { sales: '286 cookies', time: '12 p.m.' },
-      { sales: '139 cookies', time: '1 p.m.' },
-      { sales: '161 cookies', time: '2 p.m.' },
-      { sales: '145 cookies', time: '3 p.m.' },
-      { sales: '232 cookies', time: '4 p.m.' },
-      { sales: '276 cookies', time: '5 p.m.' },
-      { sales: '207 cookies', time: '6 p.m.' },
-      { sales: '161 cookies', time: '7 p.m.' },
-      { sales: '169 cookies', time: '8 p.m.' }
+    expect(salesData(hoursOpen, grandTotal(cookieStores))).toStrictEqual([{
+        sales: '88 cookies',
+        time: '9 a.m.'
+      },
+      {
+        sales: '153 cookies',
+        time: '10 a.m.'
+      },
+      {
+        sales: '252 cookies',
+        time: '11 a.m.'
+      },
+      {
+        sales: '286 cookies',
+        time: '12 p.m.'
+      },
+      {
+        sales: '139 cookies',
+        time: '1 p.m.'
+      },
+      {
+        sales: '161 cookies',
+        time: '2 p.m.'
+      },
+      {
+        sales: '145 cookies',
+        time: '3 p.m.'
+      },
+      {
+        sales: '232 cookies',
+        time: '4 p.m.'
+      },
+      {
+        sales: '276 cookies',
+        time: '5 p.m.'
+      },
+      {
+        sales: '207 cookies',
+        time: '6 p.m.'
+      },
+      {
+        sales: '161 cookies',
+        time: '7 p.m.'
+      },
+      {
+        sales: '169 cookies',
+        time: '8 p.m.'
+      }
     ]);
 
     expect(salesData(hoursOpen, grandTotal(cookieStores)).length).toStrictEqual(hoursOpen.length);
@@ -236,14 +304,26 @@ describe('Testing challenge 4', () => {
 
 describe('Testing challenge 5', () => {
   test('It should multiply all the numbers together', () => {
-    expect(calculateProduct([[1,2], [3,4], [5,6]])).toStrictEqual(720);
+    expect(calculateProduct([
+      [1, 2],
+      [3, 4],
+      [5, 6]
+    ])).toStrictEqual(720);
   });
 
   test('It should return zero if there are any zeroes in the data', () => {
-    expect(calculateProduct([[2, 3, 4, 6, 0], [4, 3, 7], [2, 4, 6]])).toStrictEqual(0);
+    expect(calculateProduct([
+      [2, 3, 4, 6, 0],
+      [4, 3, 7],
+      [2, 4, 6]
+    ])).toStrictEqual(0);
   });
   test('It should work even if some of the arrays contain no numbers', () => {
-    expect(calculateProduct([[1,2], [], [3,4,5]])).toStrictEqual(120);
+    expect(calculateProduct([
+      [1, 2],
+      [],
+      [3, 4, 5]
+    ])).toStrictEqual(120);
   });
 });
 
