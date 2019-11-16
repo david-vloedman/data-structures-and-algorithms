@@ -8,7 +8,7 @@ Write a function named firstLetters that takes in an array of strings and return
 For example, ['this is great :)', 'wow', 'whyyyyyy :(', ':)))))'] returns ['t', 'w', 'w', ':']
 ------------------------------------------------------------------------------------------------ */
 
-const firstLetters = (arr) =>  arr.map(str => str.substring(0, 1));
+const firstLetters = (arr) => arr.map(str => str.substring(0, 1));
 
 
 /* ------------------------------------------------------------------------------------------------
@@ -19,7 +19,7 @@ Write a function named findHappiness that takes in an array of strings and retur
 For example, ['this is great :)', 'wow', 'whyyyyyy :(', ':)))))'] returns ['this is great :)', ':)))))']
 ------------------------------------------------------------------------------------------------ */
 
-const findHappiness = (arr) =>  {
+const findHappiness = (arr) => {
   let happy = [];
   arr.forEach(str => {
     if (str.includes(':)')) happy.push(str);
@@ -49,7 +49,11 @@ For example, 'abcdefg' returns 'bdf'
 ------------------------------------------------------------------------------------------------ */
 
 const onlyOddChars = (str) => {
-  // Solution code here...
+  let oddChars = '';
+  str.split('').forEach((char, index) => {
+    if (index % 2 !== 0) oddChars += (char);
+  });
+  return oddChars;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -59,7 +63,11 @@ Write a function named allHappy that takes in an array of strings and returns a 
 ------------------------------------------------------------------------------------------------ */
 
 const allHappy = (arr) => {
-  // Solution code here...
+  let isHappy = true;
+  arr.forEach(str => {
+    if (!str.includes(':)')) isHappy = false;
+  });
+  return isHappy;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -69,7 +77,11 @@ Write a function named findAnything that takes in an array of strings, along wit
 ------------------------------------------------------------------------------------------------ */
 
 const findAnything = (arr, target) => {
-  // Solution code here...
+  const haveTarget = [];
+  arr.forEach(str => {
+    if (str.includes(target)) haveTarget.push(str);
+  });
+  return haveTarget;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -79,7 +91,11 @@ Write a function named findEvery that takes in an array of strings, along with a
 ------------------------------------------------------------------------------------------------ */
 
 const findEvery = (arr, target) => {
-  // Solution code here...
+  let hasTarget = true;
+  arr.forEach(str => {
+    if (!str.includes(target)) hasTarget = false;
+  });
+  return hasTarget;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -94,9 +110,13 @@ Return a two-dimensional array with the same roster, but where anyone whose name
 For example, [['Brook Testing', 'Actual Person'], ['Human Person', 'Brook again', 'still Brook']] returns [['Actual Person'], ['Human Person']]
 ------------------------------------------------------------------------------------------------ */
 
-const unenrollBrook = (arr) => {
-  // Solution code here...
-};
+const unenrollBrook = arr => arr
+  .map(course => {
+    return course.reduce((a, b) => {
+      !b.includes('Brook') ? a.push(b) : false;
+      return a
+    }, []);
+  });
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 9 - Stretch Goal
@@ -152,7 +172,7 @@ describe('Testing challenge 1', () => {
   test('It should return the first letter of each element of the array', () => {
     const words = ['apple', 'banana', 'cantaloupe'];
 
-    expect(firstLetters(words)).toStrictEqual(['a','b','c']);
+    expect(firstLetters(words)).toStrictEqual(['a', 'b', 'c']);
     expect(firstLetters(['a', 'b', 'c', 'd'])).toStrictEqual(['a', 'b', 'c', 'd']);
     expect(firstLetters([])).toStrictEqual([]);
   });
@@ -229,7 +249,15 @@ describe('Testing challenge 8', () => {
       ['Jennifer'],
       ['Nicholas', 'Sam', 'Scott', 'Vinicio']
     ]);
-    expect(unenrollBrook([['Brook', 'person'], [], ['person', 'person', 'Brook']])).toStrictEqual([['person'], [], ['person', 'person']]);
+    expect(unenrollBrook([
+      ['Brook', 'person'],
+      [],
+      ['person', 'person', 'Brook']
+    ])).toStrictEqual([
+      ['person'],
+      [],
+      ['person', 'person']
+    ]);
     expect(unenrollBrook([])).toStrictEqual([]);
   });
 });
