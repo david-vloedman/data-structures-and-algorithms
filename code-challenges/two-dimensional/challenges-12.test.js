@@ -71,7 +71,13 @@ const errands = [
 ];
 
 const howManyTreats = arr => {
-
+  let count = 0;
+  arr.forEach(errand => {
+    errand.items.forEach(item => {
+      item.name === 'Treats' ? count += item.quantity : false;
+    });
+  });
+  return count;
 };
 
 /* ------------------------------------------------------------------------------------------------
