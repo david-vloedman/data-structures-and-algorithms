@@ -183,9 +183,16 @@ let lowestWeeklyTemperatureData = [
 ];
 
 const lowestWeeklyAverage = weather => {
-
+  let temp = 100;
+  weather.forEach(set => {
+    let total = 0;
+    for (let i = 0; i < set.length; i++) {
+      total += set[i]
+    }
+    temp > total / set.length ? temp = total / set.length : false;
+  })
+  return temp
 };
-
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 8
 
